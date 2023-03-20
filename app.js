@@ -1,11 +1,11 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const {MongoClient} = require('mongodb');
 
 const URL = 'mongodb://127.0.0.1:27017/';
 const client = new MongoClient(URL);
 const app = new express();
 
-const urlencodedParser = express.urlencoded({extended: false});
 
 (async () => {
     try {
@@ -21,11 +21,13 @@ const urlencodedParser = express.urlencoded({extended: false});
 })();
 
 
+app.use(bodyParser.urlencoded({extended: false}));
+
 app.get('/', (req, res)=>{
     res.sendFile(__dirname + '/src/mainPage.html');
 })
 
-app.post('/', urlencodedParser, async(req, res)=>{
+app.post('/', async(req, res)=>{
     if(!req.body) return res.sendStatus(400);
 
     const collection = req.app.locals.collection;
