@@ -1,5 +1,7 @@
+const path = require('path');
+
 exports.addUser = (req, res)=>{
-    res.sendFile(__dirname + '/views/mainPage.html');
+    res.sendFile(path.resolve('./views/mainPage.html'));
 }
 exports.postUser = async(req, res)=>{
     if(!req.body) return res.sendStatus(400);

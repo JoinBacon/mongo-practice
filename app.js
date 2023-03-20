@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {MongoClient} = require('mongodb');
-const userController = require('contorllers/userController');
+const userController = require('./contorllers/userController');
 
 const URL = 'mongodb://127.0.0.1:27017/';
 const client = new MongoClient(URL);
