@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {MongoClient} = require('mongodb');
-const userController = require('./contorllers/userController');
+const userRouter = require('./routes/userRoute');
 
 const URL = 'mongodb://127.0.0.1:27017/';
 const client = new MongoClient(URL);
@@ -23,7 +23,4 @@ const app = new express();
 
 
 app.use(bodyParser.urlencoded({extended: false}));
-
-app.get('/', userController.addUser);
-app.post('/', userController.postUser);
-app.get('/inform', userController.getUser);
+app.use('/', userRouter);
